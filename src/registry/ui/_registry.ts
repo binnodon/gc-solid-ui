@@ -27,7 +27,7 @@ export const ui: Registry["items"] = [
     name: "alert-dialog",
     type: "registry:ui",
     dependencies: ["@kobalte/core"],
-    registryDependencies: ["button"],
+    registryDependencies: ["@gc-solid/button"],
     files: [
       {
         path: "ui/alert-dialog.tsx",
@@ -103,7 +103,7 @@ export const ui: Registry["items"] = [
     name: "button-group",
     type: "registry:ui",
     dependencies: ["@kobalte/core"],
-    registryDependencies: ["button", "separator"],
+    registryDependencies: ["@gc-solid/button", "@gc-solid/separator"],
     files: [
       {
         path: "ui/button-group.tsx",
@@ -115,7 +115,7 @@ export const ui: Registry["items"] = [
     name: "calendar",
     type: "registry:ui",
     dependencies: ["@corvu/calendar"],
-    registryDependencies: ["button"],
+    registryDependencies: ["@gc-solid/button"],
     files: [
       {
         path: "ui/calendar.tsx",
@@ -127,7 +127,7 @@ export const ui: Registry["items"] = [
     name: "carousel",
     type: "registry:ui",
     dependencies: ["embla-carousel", "embla-carousel-solid", "lucide-solid"],
-    registryDependencies: ["button"],
+    registryDependencies: ["@gc-solid/button"],
     files: [
       {
         path: "ui/carousel.tsx",
@@ -183,7 +183,7 @@ export const ui: Registry["items"] = [
     name: "command",
     type: "registry:ui",
     dependencies: ["@kobalte/core", "lucide-solid"],
-    registryDependencies: ["dialog"],
+    registryDependencies: ["@gc-solid/dialog"],
     files: [
       {
         path: "ui/command.tsx",
@@ -206,7 +206,7 @@ export const ui: Registry["items"] = [
     name: "date-picker",
     type: "registry:ui",
     dependencies: ["@kobalte/core", "@corvu/calendar"],
-    registryDependencies: ["button", "calendar", "popover"],
+    registryDependencies: ["@gc-solid/button", "@gc-solid/calendar", "@gc-solid/popover"],
     files: [
       {
         path: "ui/date-picker.tsx",
@@ -270,7 +270,7 @@ export const ui: Registry["items"] = [
   {
     name: "field",
     type: "registry:ui",
-    registryDependencies: ["label", "separator"],
+    registryDependencies: ["@gc-solid/label", "@gc-solid/separator"],
     files: [
       {
         path: "ui/field.tsx",
@@ -282,7 +282,7 @@ export const ui: Registry["items"] = [
     name: "form",
     type: "registry:ui",
     dependencies: ["@modular-forms/solid"],
-    registryDependencies: ["label"],
+    registryDependencies: ["@gc-solid/label"],
     files: [
       {
         path: "ui/form.tsx",
@@ -314,7 +314,7 @@ export const ui: Registry["items"] = [
   {
     name: "input-group",
     type: "registry:ui",
-    registryDependencies: ["button", "input", "textarea"],
+    registryDependencies: ["@gc-solid/button", "@gc-solid/input", "@gc-solid/textarea"],
     files: [
       {
         path: "ui/input-group.tsx",
@@ -335,7 +335,7 @@ export const ui: Registry["items"] = [
   {
     name: "item",
     type: "registry:ui",
-    registryDependencies: ["separator"],
+    registryDependencies: ["@gc-solid/separator"],
     files: [
       {
         path: "ui/item.tsx",
@@ -400,7 +400,7 @@ export const ui: Registry["items"] = [
     name: "pagination",
     type: "registry:ui",
     dependencies: ["@kobalte/core", "lucide-solid"],
-    registryDependencies: ["button"],
+    registryDependencies: ["@gc-solid/button"],
     files: [
       {
         path: "ui/pagination.tsx",
@@ -499,7 +499,7 @@ export const ui: Registry["items"] = [
     name: "sidebar",
     type: "registry:ui",
     dependencies: ["@kobalte/core", "lucide-solid"],
-    registryDependencies: ["button", "separator", "sheet", "input", "skeleton"],
+    registryDependencies: ["@gc-solid/button", "@gc-solid/separator", "@gc-solid/sheet", "@gc-solid/input", "@gc-solid/skeleton"],
     files: [
       {
         path: "ui/sidebar.tsx",
@@ -607,7 +607,7 @@ export const ui: Registry["items"] = [
     name: "toggle-group",
     type: "registry:ui",
     dependencies: ["@kobalte/core"],
-    registryDependencies: ["toggle"],
+    registryDependencies: ["@gc-solid/toggle"],
     files: [
       {
         path: "ui/toggle-group.tsx",
