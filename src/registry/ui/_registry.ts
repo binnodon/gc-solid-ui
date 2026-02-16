@@ -218,6 +218,7 @@ export const ui: Registry["items"] = [
     name: "dialog",
     type: "registry:ui",
     dependencies: ["@kobalte/core"],
+    registryDependencies: ["@gc-solid/button"],
     files: [
       {
         path: "ui/dialog.tsx",
@@ -499,7 +500,7 @@ export const ui: Registry["items"] = [
     name: "sidebar",
     type: "registry:ui",
     dependencies: ["@kobalte/core", "lucide-solid"],
-    registryDependencies: ["@gc-solid/button", "@gc-solid/separator", "@gc-solid/sheet", "@gc-solid/input", "@gc-solid/skeleton"],
+    registryDependencies: ["@gc-solid/button", "@gc-solid/separator", "@gc-solid/sheet", "@gc-solid/input", "@gc-solid/skeleton", "@gc-solid/tooltip", "@gc-solid/use-mobile"],
     files: [
       {
         path: "ui/sidebar.tsx",
