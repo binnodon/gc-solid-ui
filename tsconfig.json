@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    // Environment setup & latest features
+    "lib": ["esnext", "dom"],
+    "types": ["vinxi/types/client"],
+    "target": "esnext",
+    "module": "esnext",
+    "moduleDetection": "force",
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js",
+    "allowJs": false,
+    // Bundler mode
+    "moduleResolution": "bundler",
+    "verbatimModuleSyntax": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    // Best practices
+    "strict": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "strictNullChecks": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./src/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "*.ts"]
+}
