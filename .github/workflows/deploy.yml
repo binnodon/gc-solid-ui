@@ -23,12 +23,21 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Build registry and site
-        run: npm run build:all
+      - name: Build registry
+        run: npm run build:registry
+
+      - name: Build registry index
+        run: npm run build:registry-index
+
+      - name: Build site
+        run: npm run build
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
