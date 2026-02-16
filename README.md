@@ -13,21 +13,23 @@ A shadcn-compatible SolidJS component registry featuring 57+ fully ported compon
 
 ## 📦 Installation
 
-### 1. Configure the Registry
+> **Important**: Namespace installation (`@gc-solid/component`) requires the registry to be in the [official shadcn registry index](https://ui.shadcn.com/r/registries.json). Until our PR is merged, use direct URLs (Method 1).
 
-Add the `@gc-solid` registry to your `components.json`:
+### Method 1: Direct URL Installation (Current)
 
-```json
-{
-  "registries": {
-    "@gc-solid": "https://binnodon.github.io/gc-solid-ui/r/{name}.json"
-  }
-}
+Install components using direct URLs:
+
+```bash
+npx shadcn@latest add https://binnodon.github.io/gc-solid-ui/r/button.json
+npx shadcn@latest add https://binnodon.github.io/gc-solid-ui/r/dialog.json
+npx shadcn@latest add https://binnodon.github.io/gc-solid-ui/r/sidebar.json
 ```
 
-### 2. Install Components
+**URL Pattern**: `https://binnodon.github.io/gc-solid-ui/r/{component-name}.json`
 
-Use the shadcn CLI to install components:
+### Method 2: Namespace Installation (Coming Soon)
+
+Once our registry is added to the official index, you'll be able to use:
 
 ```bash
 npx shadcn@latest add @gc-solid/button
@@ -35,13 +37,7 @@ npx shadcn@latest add @gc-solid/dialog
 npx shadcn@latest add @gc-solid/input
 ```
 
-### 3. Alternative: Direct URL
-
-You can also install components using direct URLs:
-
-```bash
-npx shadcn@latest add https://binnodon.github.io/gc-solid-ui/r/button.json
-```
+**Status**: Preparing PR to [`shadcn-ui/ui`](https://github.com/shadcn-ui/ui). See [REGISTRY_SUBMISSION.md](./REGISTRY_SUBMISSION.md).
 
 ## 🧩 Available Components
 
