@@ -7,7 +7,7 @@ const __dirname = path.dirname(__filename)
 const projectRoot = path.resolve(__dirname, "..")
 
 // Import paths transformation
-function transformImports(content) {
+function transformImports(content: string): string {
   return content
     .replace(/from ["']~\/lib\/utils["']/g, 'from "@/lib/utils"')
     .replace(/from ["']~\/registry\/ui\/([^"']+)["']/g, 'from "@/components/ui/$1"')
@@ -15,7 +15,7 @@ function transformImports(content) {
 }
 
 // Read file content
-async function readFileContent(filePath) {
+async function readFileContent(filePath: string): Promise<string> {
   const fullPath = path.join(projectRoot, "src/registry", filePath)
   const content = await fs.readFile(fullPath, "utf-8")
   return transformImports(content)
@@ -29,15 +29,17 @@ async function loadRegistry() {
   const uiPath = pathToFileURL(path.join(projectRoot, "src/registry/ui/_registry.ts")).href
   const libPath = pathToFileURL(path.join(projectRoot, "src/registry/lib/_registry.ts")).href
   const hooksPath = pathToFileURL(path.join(projectRoot, "src/registry/hooks/_registry.ts")).href
+  const stylesPath = pathToFileURL(path.join(projectRoot, "src/registry/styles/_registry.ts")).href
 
   const uiModule = await import(uiPath)
   const libModule = await import(libPath)
   const hooksModule = await import(hooksPath)
+  const stylesModule = await import(stylesPath)
 
   return {
     name: "gc-solid",
     homepage: "https://binnodon.github.io/gc-solid-ui",
-    items: [...libModule.lib, ...uiModule.ui, ...hooksModule.hooks]
+    items: [...libModule.lib, ...uiModule.ui, ...hooksModule.hooks, ...stylesModule.styles]
   }
 }
 
@@ -98,7 +100,7 @@ async function main() {
       ...(item.dependencies && { dependencies: item.dependencies }),
       ...(item.devDependencies && { devDependencies: item.devDependencies }),
       ...(item.registryDependencies && { registryDependencies: item.registryDependencies }),
-      files: item.files?.map(f => ({ path: f.path, type: f.type })) || []
+      files: item.files?.map((f: any) => ({ path: f.path, type: f.type })) || []
     })
   }
 
