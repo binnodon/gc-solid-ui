@@ -37,6 +37,7 @@ jobs:
       - name: Build site
         run: npm run build
         env:
+          NODE_ENV: production
           NODE_OPTIONS: --max-old-space-size=6144
           GENERATE_SOURCEMAP: false
 
