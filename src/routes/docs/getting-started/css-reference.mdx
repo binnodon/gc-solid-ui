@@ -1,0 +1,380 @@
+---
+title: CSS Reference
+description: Complete reference for all CSS configurations required when using gc-solid-ui components
+---
+
+This document outlines all CSS configurations required in your `app.css` (or global CSS file) when using gc-solid-ui components with the Grasscup style.
+
+## Quick Start
+
+Add this to your app's main CSS file (e.g., `src/app.css`):
+
+```css title="src/app.css"
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* Required: Import the grasscup style
+ * This includes all CSS variables at :root and .dark levels,
+ * plus scoped component styles */
+@import "./components/style-grasscup.css" layer(base);
+
+/* Required: Custom variants for Tailwind v4 */
+@custom-variant dark (.dark &, [data-theme*="dark"] &);
+@custom-variant hover (&:hover);
+
+/* Required: Data attribute variants for Kobalte components */
+@custom-variant data-expanded (&[data-expanded]);
+@custom-variant data-closed (&[data-closed]);
+@custom-variant data-open (&[data-open]);
+@custom-variant data-highlighted (&[data-highlighted]);
+@custom-variant data-selected (&[data-selected]);
+@custom-variant data-active (&[data-active]);
+@custom-variant data-checked (&[data-checked]);
+@custom-variant data-disabled (&[data-disabled]);
+
+/* Required: Theme inline block with CSS variable mappings */
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Map CSS variables to Tailwind color system */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Chart colors */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* Sidebar colors */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Semantic colors */
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-error: var(--error);
+  --color-error-foreground: var(--error-foreground);
+}
+
+/* Required: Utility for hiding scrollbars */
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Optional: Base layer styles */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  ::selection {
+    @apply bg-foreground text-background;
+  }
+  html {
+    @apply scroll-smooth;
+  }
+  body {
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+    @apply bg-background text-foreground;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-foreground;
+  }
+}
+```
+
+<Callout type="info">
+**Note**: The Grasscup style now includes all CSS variables at `:root` and `.dark` levels, so you don't need to manually define them. Just import the style and add the Tailwind v4-specific configuration shown above.
+</Callout>
+
+---
+
+## Detailed Breakdown
+
+### 1. Core Dependencies
+
+**Required NPM Packages:**
+```bash
+npm install tailwindcss tw-animate-css
+```
+
+- `tailwindcss` - Tailwind CSS v4
+- `tw-animate-css` - Animation utilities for enter/exit animations used by components
+
+### 2. Custom Variants
+
+These `@custom-variant` declarations enable data attribute selectors used by Kobalte primitives:
+
+```css
+/* Dark mode variant */
+@custom-variant dark (.dark &, [data-theme*="dark"] &);
+
+/* Hover variant */
+@custom-variant hover (&:hover);
+
+/* Kobalte state variants */
+@custom-variant data-expanded (&[data-expanded]);
+@custom-variant data-closed (&[data-closed]);
+@custom-variant data-open (&[data-open]);
+@custom-variant data-highlighted (&[data-highlighted]);
+@custom-variant data-selected (&[data-selected]);
+@custom-variant data-active (&[data-active]);
+@custom-variant data-checked (&[data-checked]);
+@custom-variant data-disabled (&[data-disabled]);
+```
+
+**Used by:**
+- `data-expanded` / `data-closed`: Accordion, Collapsible, Dialog, Sheet, Combobox, Select, Dropdown Menu
+- `data-open`: Tooltip, Hover Card, Popover, Navigation Menu
+- `data-highlighted`: Combobox, Command items
+- `data-selected`: Command, Table rows
+- `data-active`: Navigation Menu links, Sidebar menu buttons
+- `data-checked`: Checkbox, Radio Group, Switch
+- `data-disabled`: All form components
+
+### 3. Animation Keyframes
+
+The Grasscup style includes these animations for Accordion and Collapsible:
+
+```css
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--kb-collapsible-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--kb-collapsible-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+```
+
+These are automatically included when you import `style-grasscup.css`.
+
+### 4. Arbitrary Value Utilities
+
+Components use Tailwind v4 arbitrary values with CSS variables. These patterns are found throughout:
+
+#### Height with CSS Variables
+```css
+h-(--kb-collapsible-content-height)  /* Accordion content height */
+h-(--radix-context-menu-content-available-height)  /* Context Menu max height */
+```
+
+**Used by:** Accordion, Context Menu
+
+#### Transform Origin
+```css
+origin-(--kb-combobox-content-transform-origin)  /* Combobox */
+origin-(--kb-select-content-transform-origin)    /* Select */
+origin-(--radix-context-menu-content-transform-origin)  /* Context Menu */
+```
+
+**Used by:** Combobox, Select, Context Menu, Date Picker, Hover Card, Popover, Tooltip
+
+#### Width with CSS Variables
+```css
+w-(--sidebar-width)  /* Sidebar width */
+w-(--sidebar-width-icon)  /* Collapsed sidebar */
+max-w-(--skeleton-width)  /* Skeleton placeholder */
+```
+
+**Used by:** Sidebar, Skeleton
+
+### 5. CSS Utility Classes
+
+#### No Scrollbar
+The `no-scrollbar` utility hides scrollbars while maintaining scroll functionality:
+
+```css
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+```
+
+**Used by:** Command list, Combobox list, Sidebar content, Scroll Area viewport
+
+#### Animation Classes from tw-animate-css
+Components use these animation utilities (provided by `tw-animate-css`):
+
+- `animate-in` / `animate-out` - Base animation triggers
+- `fade-in-0` / `fade-out-0` - Fade animations
+- `zoom-in-90` / `zoom-in-95` / `zoom-out-95` - Scale animations
+- `slide-in-from-top-2` / `slide-out-to-top-2` - Vertical slide
+- `slide-in-from-right-2` / `slide-out-to-right-2` - Horizontal slide
+- `slide-in-from-bottom-2` / `slide-out-to-bottom-2` - Vertical slide
+- `slide-in-from-left-2` / `slide-out-to-left-2` - Horizontal slide
+- `animate-pulse` - Skeleton loading animation
+- `animate-spin` - Spinner rotation
+- `animate-accordion-down` / `animate-accordion-up` - Accordion expansion
+
+**Used by:** All overlay/popover components (Dialog, Sheet, Popover, Tooltip, etc.), Skeleton, Spinner, Accordion
+
+### 6. Theme Inline Block
+
+The `@theme inline` block maps CSS variables to Tailwind's color system, allowing you to use classes like `bg-primary`, `text-muted-foreground`, etc.
+
+**Critical mappings:**
+- `--color-*` variables map to Tailwind color utilities
+- `--radius-*` variables for border radius tokens
+- `--font-sans` / `--font-mono` for typography
+
+### 7. Component-Specific CSS Variables
+
+#### Sidebar
+```css
+--sidebar-width: 16rem
+--sidebar-width-mobile: 18rem
+--sidebar-width-icon: 3rem
+```
+
+#### Skeleton
+```css
+--skeleton-width: [dynamic, set per instance]
+```
+
+#### Kobalte Collapsible
+```css
+--kb-collapsible-content-height: [auto-calculated by Kobalte]
+```
+
+---
+
+## Component Dependencies Matrix
+
+| Component | Custom Variants | Animations | CSS Variables | Utilities |
+|-----------|----------------|------------|---------------|-----------|
+| Accordion | `data-expanded`, `data-closed` | `accordion-down`, `accordion-up` | `--kb-collapsible-content-height` | - |
+| Alert Dialog | `data-open`, `data-closed` | `fade-in`, `zoom-in/out` | - | - |
+| Combobox | `data-expanded`, `data-closed`, `data-highlighted` | `fade-in`, `zoom-in/out`, `slide-in` | `--kb-combobox-content-transform-origin` | `no-scrollbar` |
+| Command | `data-selected` | - | - | `no-scrollbar` |
+| Context Menu | `data-open`, `data-closed` | `fade-in`, `zoom-in/out`, `slide-in` | `--radix-context-menu-*` | - |
+| Dialog | `data-expanded`, `data-closed` | `fade-in`, `zoom-in/out` | - | - |
+| Dropdown Menu | `data-expanded`, `data-closed` | `fade-in`, `zoom-in/out`, `slide-in` | - | - |
+| Hover Card | `data-open`, `data-closed` | `fade-in`, `zoom-in/out`, `slide-in` | - | - |
+| Navigation Menu | `data-open`, `data-closed`, `data-active` | `fade-in/out`, `slide-in/out` | - | - |
+| Popover | `data-open`, `data-closed` | `fade-in`, `zoom-in/out`, `slide-in` | - | - |
+| Select | `data-open`, `data-closed` | `fade-in`, `zoom-in/out`, `slide-in` | `--kb-select-content-transform-origin` | - |
+| Sheet | `data-expanded`, `data-closed`, `data-open` | `fade-in/out`, `slide-in/out` | - | - |
+| Sidebar | `data-expanded`, `data-active` | - | `--sidebar-width`, `--sidebar-width-icon` | `no-scrollbar` |
+| Skeleton | `data-animate` | `pulse` | `--skeleton-width` | - |
+| Spinner | - | `spin` | - | - |
+| Tooltip | `data-open`, `data-closed` | `fade-in`, `zoom-in/out`, `slide-in` | - | - |
+
+---
+
+## Installation Steps
+
+1. **Install dependencies:**
+   ```bash
+   npm install tailwindcss tw-animate-css
+   ```
+
+2. **Create or update your `app.css`:**
+   Copy the Quick Start template above.
+
+3. **Import in your app entry:**
+   ```tsx
+   // src/index.tsx or src/app.tsx
+   import './app.css'
+   ```
+
+4. **Install components:**
+   ```bash
+   npx shadcn@latest add @gc-solid/button
+   ```
+
+See the [Installation Guide](/docs/getting-started/installation) for complete setup instructions.
+
+---
+
+## Notes
+
+<Callout>
+- The Grasscup style file (`style-grasscup.css`) contains all component-specific styling and CSS variables at both `:root` and scoped levels
+- All CSS variable mappings in `@theme inline` are required for Tailwind utilities to work correctly with the design system
+- The `no-scrollbar` utility is used by several components to maintain consistent visual design
+- Animation classes from `tw-animate-css` are essential for smooth enter/exit transitions on overlay components
+</Callout>
+
+---
+
+## Troubleshooting
+
+<Callout type="warning">
+**Components don't have proper styling**
+
+Ensure `style-grasscup.css` is imported and in the `base` layer.
+</Callout>
+
+<Callout type="warning">
+**Animations not working**
+
+Verify `tw-animate-css` is installed and imported in your `app.css`.
+</Callout>
+
+<Callout type="warning">
+**`bg-sidebar` or other color classes not working**
+
+Check that all `--color-*` variables are defined in the `@theme inline` block.
+</Callout>
+
+<Callout type="warning">
+**Accordion animations not working**
+
+Ensure custom variants `data-expanded` and `data-closed` are defined.
+</Callout>
+
+<Callout type="info">
+**Custom data attributes (like `data-[side=right]`) not working**
+
+These use Tailwind's built-in arbitrary data attribute syntax `data-[...]` - no custom variant needed.
+</Callout>

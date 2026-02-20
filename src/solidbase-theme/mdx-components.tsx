@@ -263,6 +263,20 @@ import { ComponentsList } from "~/components/components-list"
 
 export { ComponentPreview, ComponentsList }
 
+export function Callout(props: { type?: "info" | "warning" | "note" } & ParentProps) {
+  const colorMap = {
+    info: "border-blue-500/30 bg-blue-500/5 text-blue-900 dark:text-blue-200",
+    warning: "border-yellow-500/30 bg-yellow-500/5 text-yellow-900 dark:text-yellow-200",
+    note: "border-border bg-muted/50 text-foreground",
+  }
+  const type = () => props.type ?? "note"
+  return (
+    <div class={`my-6 rounded-lg border p-4 text-sm leading-relaxed ${colorMap[type()]}`}>
+      {props.children}
+    </div>
+  )
+}
+
 export default {
   h1,
   h2,
@@ -288,5 +302,6 @@ export default {
   Steps,
   DirectiveContainer,
   ComponentPreview,
-  ComponentsList
+  ComponentsList,
+  Callout
 }

@@ -1,17 +1,37 @@
 ---
 title: Theming
-description: Using the Vega style and CSS variables for theming your components.
+description: Using CSS variables and styles for theming your components.
 ---
 
 ## Overview
 
 gc-solid-ui uses a semantic class system combined with CSS variables for theming. Unlike traditional shadcn-ui which uses Tailwind utilities directly in components, gc-solid-ui components use semantic class names (prefixed with `cn-`) that map to Tailwind utilities.
 
-**This means you need to install the vega style for components to work.**
+**This means you need to install a style (Vega or Grasscup) for components to work.**
 
-## Install the Vega Style
+## Available Styles
 
-The vega style provides all the component-specific class definitions needed for styling. This is a **required** step:
+### Grasscup (Recommended)
+
+The Grasscup theme is a custom GrassCup Golf-branded theme with Royal Green and Royal Purple colors:
+
+```bash
+npx shadcn@latest add @gc-solid/grasscup
+```
+
+**Features:**
+- Royal Green (#006633) primary color
+- Royal Purple (#4c2178) secondary color
+- 8 golf tee marker colors with WCAG AA compliant contrast
+- DM Sans and JetBrains Mono typography
+- Full light and dark mode support
+- All CSS variables defined at `:root` level for seamless Tailwind integration
+
+See the [Installation Guide](/docs/getting-started/installation) for complete setup instructions.
+
+### Vega
+
+The original Vega style provides a neutral, minimal theme:
 
 ```bash
 npx shadcn@latest add @gc-solid/vega

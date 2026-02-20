@@ -11,6 +11,16 @@
 @custom-variant dark (.dark &, [data-theme*="dark"] &);
 @custom-variant hover (&:hover);
 
+/* Data attribute variants for Kobalte components */
+@custom-variant data-expanded (&[data-expanded]);
+@custom-variant data-closed (&[data-closed]);
+@custom-variant data-open (&[data-open]);
+@custom-variant data-highlighted (&[data-highlighted]);
+@custom-variant data-selected (&[data-selected]);
+@custom-variant data-active (&[data-active]);
+@custom-variant data-checked (&[data-checked]);
+@custom-variant data-disabled (&[data-disabled]);
+
 :root {
   --radius: 0.625rem;
 

@@ -18,3 +18,57 @@ description: Displays a list of options for the user to pick from—triggered by
 
 :::
 ::::
+
+## Installation
+
+### CLI
+
+```package-exec
+shadcn@latest add @gc-solid/select
+```
+
+### CSS Setup
+
+<Callout type="warning">
+**Manual CSS Setup Required** — The shadcn CLI installs component code and dependencies but cannot update your CSS configuration.
+</Callout>
+
+Add the following to your `app.css`:
+
+```css
+/* Custom variants (top-level, not inside any @layer) */
+@custom-variant data-closed (&[data-closed]);
+@custom-variant data-open (&[data-open]);
+
+/* Animations — install: npm install tw-animate-css */
+@import "tw-animate-css";
+```
+
+See the [Installation Guide](/docs/getting-started/installation) for the complete `app.css` template, or the [CSS Reference](/docs/getting-started/css-reference) for a full breakdown.
+
+## Usage
+
+```tsx
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from "~/components/ui/select";
+```
+
+```tsx
+<Select
+  options={["Apple", "Banana", "Orange"]}
+  placeholder="Select a fruit..."
+  itemComponent={props => (
+    <SelectItem item={props.item}>{props.item.rawValue}</SelectItem>
+  )}
+>
+  <SelectTrigger>
+    <SelectValue<string>>{state => state.selectedOption()}</SelectValue>
+  </SelectTrigger>
+  <SelectContent />
+</Select>
+```

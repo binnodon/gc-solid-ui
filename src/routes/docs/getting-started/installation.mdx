@@ -1,0 +1,258 @@
+---
+title: Installation
+description: How to install and configure gc-solid-ui components with the Grasscup theme
+---
+
+## Prerequisites
+
+Before installing gc-solid-ui components, you need a SolidStart project with Tailwind CSS v4 configured.
+
+## Configure the Registry
+
+Add the `@gc-solid` registry to your project's `components.json`:
+
+```json title="components.json"
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "new-york",
+  "rsc": false,
+  "tsx": true,
+  "tailwind": {
+    "config": "",
+    "css": "src/app.css",
+    "baseColor": "neutral",
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/lib/utils",
+    "ui": "@/components/ui",
+    "lib": "@/lib",
+    "hooks": "@/hooks"
+  },
+  "iconLibrary": "lucide",
+  "registries": {
+    "@gc-solid": "https://binnodon.github.io/gc-solid-ui/r/{name}.json"
+  }
+}
+```
+
+Or use the CLI to add the registry:
+
+```bash
+npx shadcn@latest registry add @gc-solid=https://binnodon.github.io/gc-solid-ui/r/{name}.json
+```
+
+## Install the Grasscup Style
+
+The Grasscup theme is a custom GrassCup Golf-branded theme with:
+- **Primary**: Royal Green (#006633) - reflecting golf course tradition
+- **Secondary**: Royal Purple (#4c2178) - understated elegance
+- **Typography**: DM Sans (sans) and JetBrains Mono (mono)
+- **8 Golf Tee Colors**: Dynamic CSS variables for tee distance markers
+- **Full OKLCH color system** with light and dark modes
+
+Install it with:
+
+```bash
+npx shadcn@latest add @gc-solid/grasscup
+```
+
+This adds `src/components/style-grasscup.css` to your project.
+
+## Configure Your App CSS
+
+After installing the Grasscup style, configure your `src/app.css`:
+
+```css title="src/app.css"
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* Import the Grasscup style - includes all CSS variables and component styles */
+@import "./components/style-grasscup.css" layer(base);
+
+/* Custom variants for Tailwind v4 */
+@custom-variant dark (.dark &, [data-theme*="dark"] &);
+@custom-variant hover (&:hover);
+
+/* Data attribute variants for Kobalte components */
+@custom-variant data-expanded (&[data-expanded]);
+@custom-variant data-closed (&[data-closed]);
+@custom-variant data-open (&[data-open]);
+@custom-variant data-highlighted (&[data-highlighted]);
+@custom-variant data-selected (&[data-selected]);
+@custom-variant data-active (&[data-active]);
+@custom-variant data-checked (&[data-checked]);
+@custom-variant data-disabled (&[data-disabled]);
+
+/* Theme inline block - maps CSS variables to Tailwind color system */
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Golf tee colors for dynamic styling */
+  --color-tee-yellow: var(--tee-yellow);
+  --color-tee-yellow-foreground: var(--tee-yellow-foreground);
+  --color-tee-red: var(--tee-red);
+  --color-tee-red-foreground: var(--tee-red-foreground);
+  --color-tee-blue: var(--tee-blue);
+  --color-tee-blue-foreground: var(--tee-blue-foreground);
+  --color-tee-white: var(--tee-white);
+  --color-tee-white-foreground: var(--tee-white-foreground);
+  --color-tee-black: var(--tee-black);
+  --color-tee-black-foreground: var(--tee-black-foreground);
+  --color-tee-gold: var(--tee-gold);
+  --color-tee-gold-foreground: var(--tee-gold-foreground);
+  --color-tee-silver: var(--tee-silver);
+  --color-tee-silver-foreground: var(--tee-silver-foreground);
+  --color-tee-green: var(--tee-green);
+  --color-tee-green-foreground: var(--tee-green-foreground);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+}
+
+/* Utility for hiding scrollbars */
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Base layer styles */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  ::selection {
+    @apply bg-foreground text-background;
+  }
+  html {
+    @apply scroll-smooth;
+  }
+  body {
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+    @apply bg-background text-foreground;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-foreground;
+  }
+}
+```
+
+<Callout type="info">
+**Note**: The Grasscup style now includes all CSS variables at `:root` and `.dark` levels, so you don't need to manually define them. Just import the style and add the Tailwind v4-specific configuration shown above.
+</Callout>
+
+## Install Required Dependencies
+
+```bash
+npm install tw-animate-css
+```
+
+## Wrap Your App with Theme Class
+
+In your root app component (`src/app.tsx`), wrap your content with the `.style-grasscup` class:
+
+```tsx title="src/app.tsx"
+import { Router } from "@solidjs/router";
+import { FileRoutes } from "@solidjs/start/router";
+import { Suspense } from "solid-js";
+import "./app.css";
+
+export default function App() {
+  return (
+    <Router
+      root={props => (
+        <div class="style-grasscup">
+          <Suspense>{props.children}</Suspense>
+        </div>
+      )}
+    >
+      <FileRoutes />
+    </Router>
+  );
+}
+```
+
+## Install Components
+
+Now you can install any component from the registry:
+
+```bash
+# Install individual components
+npx shadcn@latest add @gc-solid/button
+npx shadcn@latest add @gc-solid/card
+npx shadcn@latest add @gc-solid/sidebar
+
+# Or install multiple at once
+npx shadcn@latest add @gc-solid/button @gc-solid/card @gc-solid/badge
+```
+
+## Using Golf Tee Colors
+
+The Grasscup theme includes 8 dynamic tee color variables for golf course applications:
+
+```tsx
+const teeColors = ["yellow", "red", "blue", "white", "black", "gold", "silver", "green"];
+
+<For each={teeColors}>
+  {(color) => (
+    <div
+      style={{
+        "background-color": `var(--tee-${color})`,
+        "color": `var(--tee-${color}-foreground)`,
+      }}
+    >
+      {color} Tee
+    </div>
+  )}
+</For>
+```
+
+All tee colors meet WCAG AA accessibility requirements with proper contrast ratios.
+
+## Detailed Reference
+
+For a complete breakdown of all required CSS configurations, component dependencies, and detailed explanations, see the [CSS Reference](/docs/getting-started/css-reference) guide.
+
+## Next Steps
+
+- [Browse Components](/docs/components/accordion) - Explore all available components
+- [Theming Guide](/docs/getting-started/theming) - Learn about customizing the theme
+- Try building a sample page with the Sidebar, Card, and Button components

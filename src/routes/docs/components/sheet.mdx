@@ -13,6 +13,26 @@ import { ComponentPreview } from "~/components/component-preview"
 npx @solid-ui/cli add sheet
 ```
 
+
+### CSS Setup
+
+<Callout type="warning">
+**Manual CSS Setup Required** — The shadcn CLI installs component code and dependencies but cannot update your CSS configuration.
+</Callout>
+
+Add the following to your `app.css`:
+
+```css
+/* Custom variants (top-level, not inside any @layer) */
+@custom-variant data-closed (&[data-closed]);
+@custom-variant data-open (&[data-open]);
+
+/* Animations — install: npm install tw-animate-css */
+@import "tw-animate-css";
+```
+
+See the [Installation Guide](/docs/getting-started/installation) for the complete `app.css` template, or the [CSS Reference](/docs/getting-started/css-reference) for a full breakdown.
+
 ## Usage
 
 ```tsx
