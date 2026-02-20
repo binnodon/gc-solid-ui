@@ -15,7 +15,6 @@ export default createHandler(() => (
           <link href="/favicon.ico" rel="shortcut icon" />
           <link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
           <meta content="SolidUI" name="apple-mobile-web-app-title" />
-          <link href="/site.webmanifest" rel="manifest" />
           {assets}
         </head>
         <body class="style-vega overscroll-none font-sans text-foreground antialiased [--footer-height:calc(var(--spacing)*14)] [--header-height:calc(var(--spacing)*14)]">

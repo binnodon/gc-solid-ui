@@ -31,6 +31,14 @@ export default defineConfig(
             "@modular-forms/solid"
           ]
         },
+        experimental: {
+          renderBuiltUrl(filename: string, { type }: { type: string }) {
+            if (type === 'asset' && process.env.NODE_ENV === "production") {
+              return `/gc-solid-ui/_build/${filename}`
+            }
+            return filename
+          }
+        },
         server: {
           port: parseInt(process.env.FRONTEND_PORT || "5173", 10),
           hmr: {
