@@ -16,7 +16,7 @@ export default function Home() {
             Accessible. Customizable. Open Source.
           </p>
           <div class="flex w-full items-center justify-center space-x-4 py-4 md:pb-10">
-            <Button as={A} href="/docs/getting-started/theming" size="lg">
+            <Button as={A} href="/docs/getting-started/installation" size="lg">
               Get Started
             </Button>
             <Button
@@ -116,7 +116,7 @@ export default function Home() {
               </div>
             </div>
             <p class="text-muted-foreground text-sm">
-              Learn more in the <A href="/docs/getting-started/theming" class="underline underline-offset-4">theming guide</A>.
+              Learn more in the <A href="/docs/getting-started/installation" class="underline underline-offset-4">theming guide</A>.
             </p>
           </div>
         </section>

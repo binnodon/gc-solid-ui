@@ -19,7 +19,7 @@ export const docsConfig: Config = {
   mainNav: [
     {
       title: "Get Started",
-      href: "/docs/getting-started/theming"
+      href: "/docs/getting-started/installation"
     },
     {
       title: "Components",
@@ -32,7 +32,7 @@ export const docsConfig: Config = {
       items: [
         {
           title: "Getting Started",
-          href: "/docs/getting-started/theming"
+          href: "/docs/getting-started/installation"
         },
         {
           title: "Components",
@@ -43,6 +43,16 @@ export const docsConfig: Config = {
     {
       title: "Getting Started",
       items: [
+        {
+          title: "Installation",
+          href: "/docs/getting-started/installation",
+          status: "new"
+        },
+        {
+          title: "CSS Reference",
+          href: "/docs/getting-started/css-reference",
+          status: "new"
+        },
         {
           title: "Theming",
           href: "/docs/getting-started/theming"
