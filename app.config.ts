@@ -21,6 +21,7 @@ export default defineConfig(
         }
       },
       vite: {
+        base: process.env.NODE_ENV === "production" ? "/gc-solid-ui/" : "/",
         plugins: [tailwindcss()],
         resolve: {
           conditions: ["solid", "browser", "development"]
