@@ -14,6 +14,11 @@ import { lazy } from "solid-js"
 export const Index: Record<string, any> = {`
 
   for (const item of registry.items) {
+    // Skip style items - they don't have components
+    if (item.type === "registry:style") {
+      continue
+    }
+
     const componentPath = item.files?.[0]?.path ? `~/registry/${item.files[0].path}` : ""
 
     index += `

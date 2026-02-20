@@ -830,20 +830,6 @@ export const Index: Record<string, any> = {
     categories: undefined,
     meta: undefined,
   },
-  "vega": {
-    name: "vega",
-    description: "",
-    type: "registry:style",
-    registryDependencies: undefined,
-    component: lazy(() => import("~/registry/styles/style-vega.css")),
-    files: [{
-      path: "registry/styles/style-vega.css",
-      type: "registry:style",
-      target: ""
-    }],
-    categories: undefined,
-    meta: undefined,
-  },
   "accordion-demo": {
     name: "accordion-demo",
     description: "",

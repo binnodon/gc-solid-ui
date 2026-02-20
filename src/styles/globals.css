@@ -5,6 +5,7 @@
 @import "@fontsource-variable/geist-mono";
 
 @import "~/styles/expressive-code.css";
+@import "~/styles/vega-docs.css" layer(base);
 
 @custom-variant dark (.dark &, [data-theme*="dark"] &);
 @custom-variant hover (&:hover);
