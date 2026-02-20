@@ -10,5 +10,15 @@ export const styles: Registry["items"] = [
         type: "registry:style"
       }
     ]
+  },
+  {
+    name: "grasscup",
+    type: "registry:style",
+    files: [
+      {
+        path: "styles/style-grasscup.css",
+        type: "registry:style"
+      }
+    ]
   }
 ]

@@ -6,6 +6,7 @@
 
 @import "~/styles/expressive-code.css";
 @import "~/styles/vega-docs.css" layer(base);
+@import "~/registry/styles/style-grasscup.css" layer(base);
 
 @custom-variant dark (.dark &, [data-theme*="dark"] &);
 @custom-variant hover (&:hover);
@@ -152,6 +153,24 @@
   --color-warning-foreground: var(--warning-foreground);
   --color-error: var(--error);
   --color-error-foreground: var(--error-foreground);
+
+  /* Tee marker colors - usage: bg-tee-red text-tee-red-foreground */
+  --color-tee-yellow: var(--tee-yellow);
+  --color-tee-yellow-foreground: var(--tee-yellow-foreground);
+  --color-tee-red: var(--tee-red);
+  --color-tee-red-foreground: var(--tee-red-foreground);
+  --color-tee-blue: var(--tee-blue);
+  --color-tee-blue-foreground: var(--tee-blue-foreground);
+  --color-tee-white: var(--tee-white);
+  --color-tee-white-foreground: var(--tee-white-foreground);
+  --color-tee-black: var(--tee-black);
+  --color-tee-black-foreground: var(--tee-black-foreground);
+  --color-tee-gold: var(--tee-gold);
+  --color-tee-gold-foreground: var(--tee-gold-foreground);
+  --color-tee-silver: var(--tee-silver);
+  --color-tee-silver-foreground: var(--tee-silver-foreground);
+  --color-tee-green: var(--tee-green);
+  --color-tee-green-foreground: var(--tee-green-foreground);
 
   --font-sans:
     "Geist Variable", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",

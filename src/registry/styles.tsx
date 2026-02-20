@@ -20,6 +20,41 @@ export const STYLES = [
         />
       </svg>
     )
+  },
+  {
+    name: "grasscup",
+    title: "Grasscup",
+    description: "Custom company branding based on Vega.",
+    icon: (
+      <svg
+        color="currentColor"
+        fill="none"
+        height="128"
+        role="img"
+        viewBox="0 0 24 24"
+        width="128"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12 2L2 7L12 12L22 7L12 2Z"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M2 17L12 22L22 17"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M2 12L12 17L22 12"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linejoin="round"
+        />
+      </svg>
+    )
   }
 ] as const
 
