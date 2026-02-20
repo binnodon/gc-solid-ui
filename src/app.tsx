@@ -6,8 +6,10 @@ import { SolidBaseRoot } from "@kobalte/solidbase/client"
 import "~/styles/globals.css"
 
 export default function App() {
+  const base = import.meta.env.PROD ? "/gc-solid-ui" : ""
+
   return (
-    <Router root={SolidBaseRoot}>
+    <Router base={base} root={SolidBaseRoot}>
       <FileRoutes />
     </Router>
   )
