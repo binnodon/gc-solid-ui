@@ -1,0 +1,175 @@
+---
+title: Theming
+description: Using the Vega style and CSS variables for theming your components.
+---
+
+## Overview
+
+gc-solid-ui uses a semantic class system combined with CSS variables for theming. Unlike traditional shadcn-ui which uses Tailwind utilities directly in components, gc-solid-ui components use semantic class names (prefixed with `cn-`) that map to Tailwind utilities.
+
+**This means you need to install the vega style for components to work.**
+
+## Install the Vega Style
+
+The vega style provides all the component-specific class definitions needed for styling. This is a **required** step:
+
+```bash
+npx shadcn@latest add @gc-solid/vega
+```
+
+This adds a 54KB CSS file with 319 class definitions to your project at `src/styles/style-vega.css`.
+
+## How It Works
+
+### The Three-Layer System
+
+1. **Components** use semantic class names:
+   ```tsx
+   <button class="cn-button-variant-default cn-button-size-default">
+     Button
+   </button>
+   ```
+
+2. **Vega style** maps these to Tailwind utilities:
+   ```css
+   .cn-button-variant-default {
+     @apply bg-primary text-primary-foreground hover:bg-primary/80;
+   }
+   ```
+
+3. **CSS variables** define the actual colors:
+   ```css
+   :root {
+     --primary: oklch(0.21 0.006 285.885);
+     --primary-foreground: oklch(0.985 0 0);
+   }
+   ```
+
+## CSS Variables
+
+When you initialize your project with `npx shadcn@latest init`, CSS variables are added to your `app.css`. Here's what they control:
+
+### Base Colors
+
+```css
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.141 0.005 285.823);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.141 0.005 285.823);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.141 0.005 285.823);
+  --primary: oklch(0.21 0.006 285.885);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.967 0.001 286.375);
+  --secondary-foreground: oklch(0.21 0.006 285.885);
+  --muted: oklch(0.967 0.001 286.375);
+  --muted-foreground: oklch(0.552 0.016 285.938);
+  --accent: oklch(0.967 0.001 286.375);
+  --accent-foreground: oklch(0.21 0.006 285.885);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.92 0.004 286.32);
+  --input: oklch(0.92 0.004 286.32);
+  --ring: oklch(0.705 0.015 286.067);
+}
+```
+
+### Dark Mode
+
+Dark mode variables are automatically applied when the `.dark` class is present:
+
+```css
+.dark {
+  --background: oklch(0.141 0.005 285.823);
+  --foreground: oklch(0.985 0 0);
+  --primary: oklch(0.92 0.004 286.32);
+  --primary-foreground: oklch(0.21 0.006 285.885);
+  /* ... */
+}
+```
+
+## Customizing Your Theme
+
+### Changing Colors
+
+To customize your theme, modify the CSS variables in your `app.css`:
+
+```css
+:root {
+  /* Change primary color to blue */
+  --primary: oklch(0.5 0.2 240);
+  --primary-foreground: oklch(1 0 0);
+
+  /* Change background to warm gray */
+  --background: oklch(0.98 0.01 50);
+}
+```
+
+### Using OKLCH Colors
+
+We use OKLCH color space for better perceptual uniformity and easier manipulation:
+
+- **L** (Lightness): 0 to 1 (0 = black, 1 = white)
+- **C** (Chroma): 0 to ~0.4 (saturation)
+- **H** (Hue): 0 to 360 (color wheel degrees)
+
+Example: `oklch(0.7 0.15 250)` = moderate blue with 70% lightness
+
+### Convention
+
+Each color has a corresponding `foreground` color for text that appears on top of it:
+
+- `background` → `foreground`
+- `primary` → `primary-foreground`
+- `card` → `card-foreground`
+
+## Why Semantic Classes?
+
+You might wonder why we use `cn-button-variant-default` instead of just `bg-primary text-primary-foreground` directly in components.
+
+**Benefits:**
+
+1. **Consistency**: All buttons share the same styling logic
+2. **Maintainability**: Change button styles in one place (the CSS file)
+3. **Flexibility**: Override styles without modifying component code
+4. **Naming**: Semantic names make component code more readable
+
+**Trade-off:**
+
+You need to install the vega style, but it's only 54KB and provides styling for all 57+ components.
+
+## Adding Custom Styles
+
+You can extend the vega style with your own custom classes:
+
+```css
+/* In your app.css or a custom CSS file */
+.cn-button-variant-gradient {
+  @apply bg-gradient-to-r from-purple-500 to-pink-500 text-white;
+}
+```
+
+Then use it in your components:
+
+```tsx
+<Button variant="gradient">Gradient Button</Button>
+```
+
+## Size Considerations
+
+The vega style (54KB) includes:
+- 319 component-specific class definitions
+- Responsive variants
+- State variants (hover, focus, active, disabled)
+- Size variants (sm, default, lg)
+
+When you build for production:
+- PurgeCSS (via Tailwind) removes unused classes
+- Only classes used in your components are included in the final bundle
+- The actual CSS in production will be much smaller
+
+## Next Steps
+
+- [Browse Components](/docs/components/accordion) to see the vega style in action
+- [Installation](/docs/installation) for setting up a new project
+- Experiment with customizing CSS variables in your `app.css`

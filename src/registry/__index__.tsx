@@ -288,7 +288,7 @@ export const Index: Record<string, any> = {
     name: "dialog",
     description: "",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["@gc-solid/button"],
     component: lazy(() => import("~/registry/ui/dialog.tsx")),
     files: [{
       path: "registry/ui/dialog.tsx",
@@ -652,7 +652,7 @@ export const Index: Record<string, any> = {
     name: "sidebar",
     description: "",
     type: "registry:ui",
-    registryDependencies: ["@gc-solid/button","@gc-solid/separator","@gc-solid/sheet","@gc-solid/input","@gc-solid/skeleton"],
+    registryDependencies: ["@gc-solid/button","@gc-solid/separator","@gc-solid/sheet","@gc-solid/input","@gc-solid/skeleton","@gc-solid/tooltip","@gc-solid/use-mobile"],
     component: lazy(() => import("~/registry/ui/sidebar.tsx")),
     files: [{
       path: "registry/ui/sidebar.tsx",
@@ -825,6 +825,20 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/hooks/use-mobile.ts",
       type: "registry:hook",
+      target: ""
+    }],
+    categories: undefined,
+    meta: undefined,
+  },
+  "vega": {
+    name: "vega",
+    description: "",
+    type: "registry:style",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/styles/style-vega.css")),
+    files: [{
+      path: "registry/styles/style-vega.css",
+      type: "registry:style",
       target: ""
     }],
     categories: undefined,

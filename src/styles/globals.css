@@ -6,8 +6,6 @@
 
 @import "~/styles/expressive-code.css";
 
-@import "../registry/styles/style-vega.css" layer(base);
-
 @custom-variant dark (.dark &, [data-theme*="dark"] &);
 @custom-variant hover (&:hover);
 

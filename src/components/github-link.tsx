@@ -8,7 +8,7 @@ const FALLBACK_STAR_COUNT = 1250
 
 async function getGithubStarCount() {
   try {
-    const res = await fetch("https://ungh.cc/repos/stefan-karger/solid-ui")
+    const res = await fetch("https://ungh.cc/repos/binnodon/gc-solid-ui")
     const data = await res.json()
     return data.repo?.stars ?? FALLBACK_STAR_COUNT
   } catch {
@@ -31,7 +31,7 @@ export function GitHubLink() {
     <Button
       as={A}
       class="h-8 shadow-none"
-      href={"https://github.com/stefan-karger/solid-ui"}
+      href={"https://github.com/binnodon/gc-solid-ui"}
       rel="noreferrer"
       size="sm"
       target="_blank"

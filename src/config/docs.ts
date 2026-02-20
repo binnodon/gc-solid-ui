@@ -18,6 +18,10 @@ type Config = {
 export const docsConfig: Config = {
   mainNav: [
     {
+      title: "Get Started",
+      href: "/docs/getting-started/theming"
+    },
+    {
       title: "Components",
       href: "/docs/components"
     }
@@ -27,8 +31,21 @@ export const docsConfig: Config = {
       title: "Sections",
       items: [
         {
+          title: "Getting Started",
+          href: "/docs/getting-started/theming"
+        },
+        {
           title: "Components",
           href: "/docs/components"
+        }
+      ]
+    },
+    {
+      title: "Getting Started",
+      items: [
+        {
+          title: "Theming",
+          href: "/docs/getting-started/theming"
         }
       ]
     },

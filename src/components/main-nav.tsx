@@ -8,7 +8,7 @@ import { Button } from "~/registry/ui/button"
 export function MainNav(props: ComponentProps<"nav">) {
   const [local, others] = splitProps(props, ["class"])
   return (
-    <nav class={cn("items-center", local.class)} {...others}>
+    <nav class={cn("flex items-center gap-1", local.class)} {...others}>
       <For each={docsConfig.mainNav}>
         {(item) => (
           <Button as={A} href={item.href} size="sm" variant="ghost">

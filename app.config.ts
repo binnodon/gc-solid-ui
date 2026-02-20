@@ -15,7 +15,7 @@ export default defineConfig(
       ssr: false,
       server: {
         preset: "static",
-        baseURL: "/gc-solid-ui/",
+        baseURL: process.env.NODE_ENV === "production" ? "/gc-solid-ui/" : "/",
         prerender: {
           crawlLinks: true
         }
