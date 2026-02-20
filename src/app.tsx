@@ -6,10 +6,10 @@ import { SolidBaseRoot } from "@kobalte/solidbase/client"
 import "~/styles/globals.css"
 
 export default function App() {
-  const base = import.meta.env.PROD ? "/gc-solid-ui" : ""
+  const base = import.meta.env.VITE_GITHUB_PAGES === "true" ? "/gc-solid-ui" : undefined
 
   return (
-    <Router base={base} root={SolidBaseRoot}>
+    <Router {...(base && { base })} root={SolidBaseRoot}>
       <FileRoutes />
     </Router>
   )

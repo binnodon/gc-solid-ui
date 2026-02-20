@@ -9,19 +9,21 @@ const theme = defineTheme({
   extends: defaultTheme
 })
 
+const isGitHubPages = process.env.GITHUB_PAGES === "true"
+
 export default defineConfig(
   createWithSolidBase(theme)(
     {
       ssr: false,
       server: {
         preset: "static",
-        baseURL: process.env.NODE_ENV === "production" ? "/gc-solid-ui/" : "/",
+        ...(isGitHubPages && { baseURL: "/gc-solid-ui/" }),
         prerender: {
           crawlLinks: true
         }
       },
       vite: {
-        base: process.env.NODE_ENV === "production" ? "/gc-solid-ui/" : "/",
+        ...(isGitHubPages && { base: "/gc-solid-ui/" }),
         plugins: [tailwindcss()],
         resolve: {
           conditions: ["solid", "browser", "development"]
@@ -31,14 +33,16 @@ export default defineConfig(
             "@modular-forms/solid"
           ]
         },
-        experimental: {
-          renderBuiltUrl(filename: string, { type }: { type: string }) {
-            if (type === 'asset' && process.env.NODE_ENV === "production") {
-              return `/gc-solid-ui/_build/${filename}`
+        ...(isGitHubPages && {
+          experimental: {
+            renderBuiltUrl(filename: string, { type }: { type: string }) {
+              if (type === 'asset') {
+                return `/gc-solid-ui/_build/${filename}`
+              }
+              return filename
             }
-            return filename
           }
-        },
+        }),
         server: {
           port: parseInt(process.env.FRONTEND_PORT || "5173", 10),
           hmr: {

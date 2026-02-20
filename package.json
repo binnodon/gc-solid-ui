@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "vinxi dev",
-    "build": "vinxi build",
+    "build": "GITHUB_PAGES=true VITE_GITHUB_PAGES=true vinxi build",
     "build:registry": "tsx scripts/build-registry.mts",
     "build:registry-index": "tsx ./src/scripts/build-registry.ts",
     "build:all": "npm run build:registry && npm run build:registry-index && npm run build",

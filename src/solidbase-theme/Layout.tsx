@@ -1,7 +1,7 @@
 import { Show } from "solid-js"
 import { Title } from "@solidjs/meta"
 import type { RouteSectionProps } from "@solidjs/router"
-import { useMatch } from "@solidjs/router"
+import { useLocation } from "@solidjs/router"
 
 import { useThemeListener } from "@kobalte/solidbase/client"
 
@@ -12,8 +12,9 @@ import { SiteHeader } from "~/components/site-header"
 export default function (props: RouteSectionProps) {
   useThemeListener()
 
-  const isBlock = useMatch(() => "/blocks/*")
-  const isDocsPage = useMatch(() => "/docs/*")
+  const location = useLocation()
+  const isBlock = () => location.pathname.includes("/blocks/")
+  const isDocsPage = () => location.pathname.includes("/docs/")
 
   return (
     <DesignSystemProvider>
